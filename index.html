@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Приглашение на свадьбу</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Marck+Script&family=Playfair+Display:wght@700&family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --lavender: #d2afe2;
+      --paper: #f8f4eb;
+      --pink: #fb80bd;
+      --pink-soft: #ffc2df;
+      --pink-light: #ffd7e9;
+      --blue: #a8d1ff;
+      --green: #638c22;
+      --button: #a8cf51;
+      --lime: #d8e644;
+      --text: #2f394c;
+      --muted: #687286;
+      --white: #fff;
+      --shadow: 0 12px 22px rgba(74, 62, 44, .14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--lavender);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    button, input, label { font: inherit; }
+
+    .page {
+      width: min(586px, 100%);
+      margin: 0 auto;
+      background: var(--lavender);
+      padding-bottom: 28px;
+    }
+
+    .hero {
+      position: relative;
+      height: 156px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .script-top {
+      margin: 0;
+      padding-top: 37px;
+      color: #ff4138;
+      font-family: Caveat, cursive;
+      font-size: 20px;
+      line-height: 1;
+      transform: rotate(-2deg);
+    }
+
+    .tg {
+      position: absolute;
+      top: 30px;
+      right: 22px;
+      color: rgba(255, 255, 255, .9);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    h1 {
+      margin: 12px 0 0;
+      color: var(--white);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(43px, 8.6vw, 50px);
+      line-height: .94;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .paper {
+      position: relative;
+      width: calc(100% - 18px);
+      margin: 0 auto;
+      padding: 78px 38px 82px;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: 55px;
+    }
+
+    .section { position: relative; margin-top: 64px; }
+    .section:first-child { margin-top: 0; }
+
+    .pill {
+      display: grid;
+      place-items: center;
+      width: max-content;
+      min-width: 118px;
+      max-width: 100%;
+      min-height: 53px;
+      margin: 0 auto 33px;
+      padding: 7px 25px 8px;
+      border: 3px solid var(--pink);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.02;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .pill.pink { color: var(--pink); }
+    .intro-pill { width: 265px; min-height: 67px; font-size: 24px; }
+
+    .lead {
+      margin: 0 auto;
+      max-width: 285px;
+      font-size: 23px;
+      font-weight: 500;
+      line-height: 1.34;
+      text-align: center;
+    }
+
+    .names {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      width: 320px;
+      margin: 65px auto 0;
+    }
+
+    .photo {
+      width: 148px;
+      height: 148px;
+      border-radius: 28px;
+      box-shadow: 0 18px 24px rgba(55, 44, 34, .13);
+    }
+
+    .photo.bride { background: var(--pink-soft); transform: rotate(-2deg); }
+    .photo.groom { background: var(--blue); transform: rotate(2deg); }
+
+    .caption {
+      margin-top: 14px;
+      font-family: "Marck Script", cursive;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .caption.bride { color: var(--pink); }
+    .caption.groom { color: var(--green); }
+
+    .hearts {
+      margin: 35px 0 0;
+      color: var(--pink);
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      letter-spacing: 17px;
+    }
+
+    .flower {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      pointer-events: none;
+    }
+
+    .flower::before,
+    .flower::after,
+    .flower span,
+    .flower i {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--flower, var(--pink-light));
+    }
+
+    .flower::before { left: 19px; top: 0; box-shadow: 0 38px 0 var(--flower, var(--pink-light)); }
+    .flower::after { left: 0; top: 19px; box-shadow: 38px 0 0 var(--flower, var(--pink-light)); }
+    .flower span { left: 6px; top: 6px; box-shadow: 26px 26px 0 var(--flower, var(--pink-light)); }
+    .flower i { left: 32px; top: 6px; box-shadow: -26px 26px 0 var(--flower, var(--pink-light)); }
+
+    .flower b {
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .75);
+    }
+
+    .flower.one { top: 58px; right: 35px; }
+    .flower.two { top: 300px; left: 16px; --flower: #dfe9bd; }
+    .flower.three { top: 483px; right: 22px; }
+    .flower.four { top: 166px; right: 22px; opacity: .45; }
+    .flower.five { top: 120px; right: 36px; --flower: #dfe9bd; }
+
+    .date-card,
+    .gift-card,
+    .form-card,
+    .input-card,
+    .place-photo {
+      background: var(--white);
+      border: 2px solid var(--pink-light);
+      box-shadow: var(--shadow);
+    }
+
+    .date-card {
+      margin: 45px auto 0;
+      padding: 28px 28px 29px;
+      border-radius: 28px;
+    }
+
+    .big-date {
+      margin: 0;
+      color: var(--pink);
+      font-size: clamp(45px, 11vw, 65px);
+      font-weight: 900;
+      line-height: .98;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .date-card .copy,
+    .dress-copy,
+    .gift-card p {
+      margin: 18px auto 0;
+      max-width: 335px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .calendar {
+      width: min(390px, 100%);
+      margin: 24px auto 0;
+      padding: 18px 26px 24px;
+      background: var(--white);
+      border-radius: 19px;
+      box-shadow: 0 10px 20px rgba(61, 54, 43, .17);
+    }
+
+    .month {
+      margin: 0 0 13px;
+      color: var(--pink);
+      font-size: 21px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      row-gap: 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .calendar-grid b { color: var(--muted); font-size: 14px; }
+    .calendar-grid span { color: #1f2530; }
+    .calendar-grid .muted { color: #9ba3b2; }
+    .calendar-grid .chosen {
+      justify-self: center;
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      margin-top: -6px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .wave {
+      width: 100%;
+      height: 34px;
+      margin: 75px 0 58px;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='430' height='30' viewBox='0 0 430 30'%3E%3Cpath d='M0 15 C36 3 72 3 108 15 S180 27 216 15 S288 3 324 15 S396 27 430 15' fill='none' stroke='%23fb80bd' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E")
+        center / 100% 30px no-repeat;
+    }
+
+    .map-card {
+      height: 324px;
+      padding: 10px;
+      overflow: hidden;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-card ymaps,
+    .map-card iframe {
+      border-radius: 6px;
+    }
+
+    .venue {
+      margin: 26px 0 0;
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .venue strong {
+      display: block;
+      margin: 10px 0;
+      color: var(--green);
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .map-button,
+    .submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 70px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--button);
+      color: var(--white);
+      box-shadow: 0 10px 20px rgba(93, 120, 32, .22);
+      font-size: 23px;
+      font-weight: 900;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .map-button { margin-top: 24px; gap: 14px; }
+
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 27px;
+    }
+
+    .palette span {
+      width: 58px;
+      height: 58px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, .22);
+    }
+
+    .palette span:nth-child(1) { background: #ed71b4; }
+    .palette span:nth-child(2) { background: #f5cde3; }
+    .palette span:nth-child(3) { background: var(--lime); }
+    .palette span:nth-child(4) { background: #a6ca4d; }
+    .palette span:nth-child(5) { background: #5e8d19; }
+
+    .timeline { display: grid; gap: 15px; }
+
+    .time-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      padding: 0 21px 0 16px;
+      background: var(--white);
+      border: 2px solid var(--pink-light);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .time-row strong {
+      color: var(--pink);
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .gift-card {
+      position: relative;
+      padding: 23px 18px 25px;
+      border-radius: 20px;
+    }
+
+    .gift-icons {
+      margin: 20px 0 0;
+      font-size: 27px;
+      text-align: center;
+    }
+
+    .rsvp { margin-top: 78px; }
+    .rsvp .pill { margin-bottom: 31px; }
+
+    .input-card {
+      width: 100%;
+      height: 61px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 18px;
+      color: #878787;
+      font-size: 18px;
+      line-height: 58px;
+      outline: none;
+    }
+
+    .input-card::placeholder { color: #878787; opacity: 1; }
+
+    .form-card {
+      margin-top: 23px;
+      padding: 21px 20px;
+      border-radius: 18px;
+    }
+
+    .form-card h3 {
+      margin: 0 0 15px;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-height: 34px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .choice input {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      border: 1.5px solid #848484;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .choice input:checked {
+      border: 2px solid #ff4fa4;
+      box-shadow: inset 0 0 0 4px var(--white);
+      background: #ff4fa4;
+    }
+
+    .submit { margin-top: 22px; }
+
+    .final {
+      margin-top: 78px;
+      text-align: center;
+    }
+
+    .final h2 {
+      margin: 0;
+      color: var(--pink);
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.18;
+      text-transform: uppercase;
+    }
+
+    .final p { margin: 28px 0 0; font-size: 30px; }
+
+    @media (max-width: 430px) {
+      .paper { width: 100%; border-radius: 48px; padding-left: 28px; padding-right: 28px; }
+      .tg { right: 14px; }
+      .names { width: 292px; gap: 12px; }
+      .photo { width: 140px; height: 140px; }
+      .palette { gap: 9px; }
+      .palette span { width: 52px; height: 52px; }
+      .time-row { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="script-top">приглашение</p>
+      <div class="tg">tg: @ochkowinx</div>
+      <h1>НА СВАДЬБУ</h1>
+    </header>
+
+    <div class="paper">
+      <section class="section intro">
+        <div class="flower one"><span></span><i></i><b></b></div>
+        <div class="pill pink intro-pill">ДОРОГИЕ РОДНЫЕ<br>И БЛИЗКИЕ!</div>
+        <p class="lead">У нас для вас<br>прекрасная новость!</p>
+        <div class="names" aria-label="Жених и невеста">
+          <div>
+            <div class="photo bride"></div>
+            <div class="caption bride">Анюта</div>
+          </div>
+          <div>
+            <div class="photo groom"></div>
+            <div class="caption groom">Ванюша</div>
+          </div>
+        </div>
+        <div class="flower two"><span></span><i></i><b></b></div>
+        <div class="hearts">♥ ♥ ♥</div>
+      </section>
+
+      <section class="section date-card">
+        <p class="big-date">26 | 06 | 26</p>
+        <p class="copy">Мы хотим разделить этот важный для нас день вместе с вами, с нашими родными и близкими людьми</p>
+        <div class="calendar">
+          <p class="month">Июнь 2026</p>
+          <div class="calendar-grid" aria-label="Календарь на июнь 2026">
+            <b>Пн</b><b>Вт</b><b>Ср</b><b>Чт</b><b>Пт</b><b>Сб</b><b>Вс</b>
+            <span class="muted">1</span><span class="muted">2</span><span class="muted">3</span><span class="muted">4</span><span class="muted">5</span><span class="muted">6</span><span class="muted">7</span>
+            <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+            <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+            <span>22</span><span>23</span><span>24</span><span>25</span><span class="chosen">26</span><span>27</span><span>28</span>
+            <span>29</span><span>30</span>
+          </div>
+        </div>
+        <div class="flower three"><span></span><i></i><b></b></div>
+      </section>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <section class="section place">
+        <div class="pill">ГДЕ?</div>
+        <div class="map-card">
+          <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A630e42c9cedc3ea75234ca761f4809bd70772c7a36baa0defeb0390fe7c59b45&amp;width=100%25&amp;height=304&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+        <p class="venue">Загородный Комплекс<strong>”Villa Barvikha”</strong>Москва, Посёлок Барвиха, 135</p>
+        <a class="map-button" href="https://yandex.ru/maps/?text=Villa%20Barvikha%2C%20%D0%91%D0%B0%D1%80%D0%B2%D0%B8%D1%85%D0%B0" target="_blank" rel="noreferrer">⌖ ОТКРЫТЬ КАРТУ</a>
+      </section>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <section class="section dress">
+        <div class="flower four"><span></span><i></i><b></b></div>
+        <div class="pill pink">ЧТО НАДЕТЬ?</div>
+        <p class="dress-copy">Дорогие гости, для создания гармоничной атмосферы мы будем благодарны, если вы поддержите цветовую палитру нашего вечера в своих нарядах.</p>
+        <div class="palette" aria-label="Цветовая палитра вечера">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <section class="section">
+        <div class="pill">ВО СКОЛЬКО?</div>
+        <div class="timeline">
+          <div class="time-row"><strong>11:00</strong><span>Церемония</span></div>
+          <div class="time-row"><strong>15:00</strong><span>Фотосессия</span></div>
+          <div class="time-row"><strong>17:00</strong><span>Начало банкета</span></div>
+          <div class="time-row"><strong>21:00</strong><span>Танцы до утра</span></div>
+        </div>
+      </section>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <section class="section gift">
+        <div class="pill pink">ЧТО ДАРИТЬ?</div>
+        <div class="gift-card">
+          <p>Приятным комплиментом для нас будет, если вместо цветов вы решите подарить бутылочку алкоголя.</p>
+          <div class="gift-icons">🍾 &nbsp; 🍷 &nbsp; 🥂</div>
+          <p>Ваши пожелания в конвертах будут лучшим подарком, которые помогут исполнить наши мечты.</p>
+          <div class="flower five"><span></span><i></i><b></b></div>
+        </div>
+      </section>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <form class="section rsvp" id="rsvp">
+        <div class="pill">ВЫ ПРИДЁТЕ?</div>
+        <input class="input-card" type="text" name="guest_name" placeholder="Ваше имя и фамилия" autocomplete="name">
+        <div class="form-card">
+          <label class="choice"><input type="radio" name="come" checked>Обязательно буду</label>
+          <label class="choice"><input type="radio" name="come">К сожалению, не получится</label>
+        </div>
+        <div class="form-card">
+          <h3>Вы будете с парой?</h3>
+          <label class="choice"><input type="radio" name="pair" checked>Да</label>
+          <label class="choice"><input type="radio" name="pair">Нет</label>
+        </div>
+        <div class="form-card">
+          <h3>Потребуется ли вам размещение в городе?</h3>
+          <label class="choice"><input type="radio" name="hotel">Да</label>
+          <label class="choice"><input type="radio" name="hotel" checked>Нет</label>
+        </div>
+        <button class="submit" type="submit">ОТПРАВИТЬ</button>
+      </form>
+
+      <div class="wave" aria-hidden="true"></div>
+
+      <section class="final">
+        <h2>С НЕТЕРПЕНИЕМ<br>ЖДЁМ!</h2>
+        <p>💕 💐 🥂</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const yandexFormUrl = "https://forms.yandex.ru/u/6a035d5e068ff0307e0d595e/";
+
+    document.querySelector(".rsvp").addEventListener("submit", (event) => {
+      event.preventDefault();
+      window.open(yandexFormUrl, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
