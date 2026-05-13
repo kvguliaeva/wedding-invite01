@@ -22,6 +22,8 @@
       --muted: #687286;
       --white: #fff;
       --shadow: 0 12px 22px rgba(74, 62, 44, .14);
+      --child-bride: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Child_and_Doll.jpg");
+      --child-groom: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Boy_1900_hg.jpg");
     }
 
     * { box-sizing: border-box; }
@@ -134,14 +136,40 @@
     }
 
     .photo {
+      position: relative;
       width: 148px;
       height: 148px;
       border-radius: 28px;
+      border: 7px solid #fff8ef;
+      background-color: #ead8c5;
+      background-position: center;
+      background-size: cover;
       box-shadow: 0 18px 24px rgba(55, 44, 34, .13);
+      overflow: hidden;
+      filter: sepia(.35) saturate(.82) contrast(.98);
     }
 
-    .photo.bride { background: var(--pink-soft); transform: rotate(-2deg); }
-    .photo.groom { background: var(--blue); transform: rotate(2deg); }
+    .photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255, 255, 255, .2), transparent 24%),
+        linear-gradient(rgba(255, 243, 218, .08), rgba(92, 61, 34, .06));
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .photo.bride {
+      background-image: var(--child-bride);
+      transform: rotate(-2deg);
+    }
+
+    .photo.groom {
+      background-image: var(--child-groom);
+      background-position: center 34%;
+      transform: rotate(2deg);
+    }
 
     .caption {
       margin-top: 14px;
